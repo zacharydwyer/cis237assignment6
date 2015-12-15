@@ -13,6 +13,7 @@ namespace cis237Assignment6
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Default, single route that will execute a {controller}'s {action} (method) with additional {id} info (if applicable, and is optional)
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

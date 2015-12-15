@@ -15,7 +15,7 @@ namespace cis237Assignment6.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "This application ";
 
             return View();
         }
