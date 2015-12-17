@@ -138,14 +138,46 @@ namespace cis237Assignment6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,pack,price,active")] Beverage beverage)
+        public ActionResult Create([Bind(Include = "name,pack,price,active")] Beverage beverage)
         {
-            Random randomNumGen = new Random();
+            // Generate a unique ID.
+            Guid uniqueID = Guid.NewGuid();
+
+            // Holds string representation of unique ID.
+            String idString = uniqueID.ToString();
+
+            // Apparently the db only accepts id's with a max length of 10. Cut it down.
+            idString = idString.Substring(0, 10);
+
+            // Finally, assign id.
+            beverage.id = idString;
 
             if (ModelState.IsValid)
             {
                 db.Beverages.Add(beverage);
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
+
                 return RedirectToAction("Index");
             }
 
