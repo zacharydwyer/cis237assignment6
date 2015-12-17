@@ -1,0 +1,92 @@
+﻿@model IEnumerable<cis237Assignment6.Beverage>
+
+@{
+    ViewBag.Title = "Beverages";
+}
+
+<h2>Beverage List</h2>
+
+<div class="form-group">
+    <fieldset>
+        <legend>Search Filter</legend>
+        @{
+            using (Html.BeginForm("Filter", "Beverages", FormMethod.Post, new { @class = "form-inline" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div style="display:inline-block; background-color:ghostwhite; padding:2em; border-radius: 25px;">
+                    <label for="name" style="margin-right:20px">Name</label>
+                    @Html.TextBox("name", (string)ViewBag.filterName, new { @style = "float: right;" })
+                    <br />
+                    <br />
+
+                    <label for="pack" style="margin-right:10px">Pack</label>
+                    @Html.TextBox("pack", (string)ViewBag.filterPack, new { @style = "float: right;" })
+                    <br />
+                    <br />
+
+                    <label for="min" style="margin-right:10px">Minimum Price</label>
+                    @Html.TextBox("min", (string)ViewBag.filterMinPrice, new { @style = "float: right;" })
+                    <br />
+                    <br />
+
+                    <label for="max" style="margin-right:10px">Maximum Price</label>
+                    @Html.TextBox("max", (string)ViewBag.filterMaxPrice, new { @style = "float: right;" })
+                    <br />
+                    <br />
+
+                    <label for="active" style="margin-right:10px">Is Active?</label>
+                    @Html.CheckBox("active", (bool)ViewBag.filterActive, new { @style = "float: right;", @checked = "@ViewBag.filterActive" })
+                    <br />
+                    <br />
+
+                    <input type="submit" value="Filter" class="btn btn-info" style="float:right"/>
+                </div>
+            }
+        }
+    </fieldset>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pack)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,22 @@
+﻿/* Background image added in MVC code */
+/* Not sure if you can add a background image via css in MVC */
+#jumbotron_with_image {
+    margin-top:2.5em;
+    margin-bottom:2em;
+    padding-top:2.5em;
+    background-position: 0% 55%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    padding-bottom: 1.5em;
+    text-shadow: black 0.1em 0.1em 0.1em;
+    box-shadow: 5px 5px 100px #CCCCCC;
+}
+
+/* Helps my text stand out against my badly chosen black and white background image */
+#semi_transparent_text_background {
+    background: rgba(10, 10, 10, 0.65);
+    padding:0.10em;
+    /* inline-block so the background color stays tightly behind the text */
+    display:inline-block;
+}

@@ -96,6 +96,11 @@ This one is okay, and it is from Microsoft:
 
 
 ## Outside Resources Used
+* Create an Images folder [the way they reference the image doesn't work]: http://stackoverflow.com/questions/1064786/where-do-you-store-images-for-asp-net-mvc-projects-and-how-do-you-reference-them
+* How to properly reference the image: http://stackoverflow.com/questions/10632544/mvc-3-layout-cshtml-add-a-logo-to-the-site
+
+
+
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
