@@ -3,6 +3,7 @@
 ## Due 12-17-2015
 
 ## Author
+Zachary Dwyer
 
 ## Description
 
@@ -103,5 +104,5 @@ This one is okay, and it is from Microsoft:
 
 
 ## Known Problems, Issues, And/Or Errors in the Program
-
-
+* Creation doesn't work due to a conflict with primary keys.
+* Searching by "isActive" doesn't work.
