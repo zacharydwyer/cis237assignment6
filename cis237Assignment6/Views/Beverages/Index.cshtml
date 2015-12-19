@@ -26,17 +26,34 @@
                     <br />
 
                     <label for="min" style="margin-right:10px">Minimum Price</label>
-                    @Html.TextBox("min", (string)ViewBag.filterMinPrice, new { @style = "float: right;" })
+                    @Html.TextBox("min", (string)ViewBag.filterMinPrice, new { @style = "float: right;", @type = "number" })
                     <br />
                     <br />
 
                     <label for="max" style="margin-right:10px">Maximum Price</label>
-                    @Html.TextBox("max", (string)ViewBag.filterMaxPrice, new { @style = "float: right;" })
+                    @Html.TextBox("max", (string)ViewBag.filterMaxPrice, new { @style = "float: right;", @type = "number" })
                     <br />
                     <br />
 
+                    <!-- Create the list of selections. -->
+                    @{ 
+                        SelectList selections = new SelectList(
+                            new List<SelectListItem>
+                            {
+                                new SelectListItem { Selected = true, Text = "(Both)", Value = "0" },
+                                new SelectListItem { Selected = false, Text = "Is Active", Value = "1" },
+                                new SelectListItem { Selected = false, Text = "Is Not Active", Value = "2" }
+                            }, "Value", "Text");
+                    }
+
                     <label for="active" style="margin-right:10px">Is Active?</label>
-                    @Html.CheckBox("active", (bool)ViewBag.filterActive, new { @style = "float: right;", @checked = "@ViewBag.filterActive" })
+                    @Html.DropDownList("active", selections, null, new { @style = "float: right;" })
+                    <br />
+                    <br />
+
+                    <label for="atATime" style="margin-right:10px">Amount to show at a time</label>
+                    <!-- Set default amount to show to 50. -->
+                    @Html.TextBox("atATime", (string)ViewBag.filterAmountToShow, new { @style = "float: right;", @type = "number" })
                     <br />
                     <br />
 
