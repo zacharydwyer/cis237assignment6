@@ -104,5 +104,8 @@ This one is okay, and it is from Microsoft:
 
 
 ## Known Problems, Issues, And/Or Errors in the Program
-* Creation now works, but it does so by creating a unique ID with Guid. IDs accepted by the database are, at max, 10 chars. I have to truncate the Guid's string in order for it to work. Who's to say one of those times results in a non-unique string value since Guid doesn't ensure uniqueness if you cut it down to 10 characters. I would "increment" the ID but that would require a search through the entire database at first which might be slow.
-* Searching by "isActive" doesn't work.
+None known
+
+## Bugs Fixed
+* Creating an item in the database now works, but it does so by creating a unique ID with Guid. IDs accepted by the database are, at max, 10 chars. I have to truncate the Guid's string value in order for it to work. Who's to say one of those times results in a non-unique string value since Guid doesn't ensure uniqueness if you cut it down to 10 characters. I would "increment" the ID but that would require a search through the entire database at first which might be slow.
+* Searching by "isActive" now works
